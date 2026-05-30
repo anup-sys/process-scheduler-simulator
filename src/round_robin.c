@@ -2,6 +2,7 @@
 
 #include "round_robin.h"
 
+#include "gantt_chart.h"
 void round_robin_schedule(Process processes[],
                           int n,
                           int quantum)
