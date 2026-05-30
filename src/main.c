@@ -4,6 +4,7 @@
 #include "fcfs.h"
 #include "sjf.h"
 #include "round_robin.h"
+#include "priority.h"
 #include "scheduler.h"
 
 int main()
@@ -17,6 +18,7 @@ int main()
     printf("\n1. FCFS\n");
     printf("2. SJF\n");
     printf("3. Round Robin\n");
+    printf("4. Priority Scheduling\n");
 
     printf("\nEnter choice: ");
     scanf("%d", &choice);
@@ -26,14 +28,32 @@ int main()
 
     Process processes[n];
 
-    printf("\nEnter PID ArrivalTime BurstTime\n");
-
-    for (int i = 0; i < n; i++)
+    if (choice == 4)
     {
-        scanf("%d %d %d",
-              &processes[i].pid,
-              &processes[i].arrival_time,
-              &processes[i].burst_time);
+        printf("\nEnter PID ArrivalTime BurstTime Priority\n");
+
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d %d %d %d",
+                  &processes[i].pid,
+                  &processes[i].arrival_time,
+                  &processes[i].burst_time,
+                  &processes[i].priority);
+        }
+    }
+    else
+    {
+        printf("\nEnter PID ArrivalTime BurstTime\n");
+
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d %d %d",
+                  &processes[i].pid,
+                  &processes[i].arrival_time,
+                  &processes[i].burst_time);
+
+            processes[i].priority = 0;
+        }
     }
 
     switch (choice)
@@ -55,6 +75,10 @@ int main()
                 n,
                 quantum
             );
+            break;
+
+        case 4:
+            priority_schedule(processes, n);
             break;
 
         default:

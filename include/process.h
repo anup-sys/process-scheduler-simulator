@@ -7,6 +7,10 @@ typedef struct
     int arrival_time;
     int burst_time;
 
+    /* For Priority Scheduling */
+    int priority;
+
+    /* Calculated Metrics */
     int waiting_time;
     int turnaround_time;
     int completion_time;
