@@ -3,17 +3,20 @@
 #include "process.h"
 #include "fcfs.h"
 #include "sjf.h"
+#include "round_robin.h"
 #include "scheduler.h"
 
 int main()
 {
     int n;
     int choice;
+    int quantum;
 
     printf("CPU Scheduling Simulator\n");
 
     printf("\n1. FCFS\n");
     printf("2. SJF\n");
+    printf("3. Round Robin\n");
 
     printf("\nEnter choice: ");
     scanf("%d", &choice);
@@ -41,6 +44,17 @@ int main()
 
         case 2:
             sjf_schedule(processes, n);
+            break;
+
+        case 3:
+            printf("\nEnter Time Quantum: ");
+            scanf("%d", &quantum);
+
+            round_robin_schedule(
+                processes,
+                n,
+                quantum
+            );
             break;
 
         default:
