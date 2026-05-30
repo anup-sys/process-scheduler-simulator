@@ -2,13 +2,23 @@
 
 #include "process.h"
 #include "fcfs.h"
+#include "sjf.h"
 #include "scheduler.h"
 
 int main()
 {
     int n;
+    int choice;
 
-    printf("Enter number of processes: ");
+    printf("CPU Scheduling Simulator\n");
+
+    printf("\n1. FCFS\n");
+    printf("2. SJF\n");
+
+    printf("\nEnter choice: ");
+    scanf("%d", &choice);
+
+    printf("\nEnter number of processes: ");
     scanf("%d", &n);
 
     Process processes[n];
@@ -23,7 +33,20 @@ int main()
               &processes[i].burst_time);
     }
 
-    fcfs_schedule(processes, n);
+    switch (choice)
+    {
+        case 1:
+            fcfs_schedule(processes, n);
+            break;
+
+        case 2:
+            sjf_schedule(processes, n);
+            break;
+
+        default:
+            printf("Invalid Choice\n");
+            return 1;
+    }
 
     print_results(processes, n);
 
